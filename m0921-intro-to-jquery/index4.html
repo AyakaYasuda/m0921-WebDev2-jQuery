@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <style>
+      #draggable {
+        width: 100px;
+        padding: 2rem;
+        text-align: center;
+        background-color: beige;
+        cursor: grabbing;
+      }
+
+      #parentBox {
+        width: 400px;
+        height: 300px;
+        background-color: royalblue;
+      }
+
+      #parentBox span {
+        cursor: grab;
+      }
+
+      #resizable {
+        width: 100px;
+        height: 100px;
+        background-color: orangered;
+      }
+
+      #also {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(87, 52, 39);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="draggable">Drag me horizontally</div>
+
+    <div id="parentBox">
+      <span>I'm stuck in the box!</span>
+    </div>
+
+    <div id="resizable"></div>
+
+    <div id="also"></div>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#draggable").draggable({ axis: "x" });
+
+        $("span").draggable({
+          containment: "parent",
+          drag: function () {
+            $(this).css("cursor", "grabbing");
+          },
+          stop: function () {
+            $(this).css("cursor", "grab");
+          },
+        });
+
+        $('#resizable').resizable({
+            grid: 50,
+            alsoResize: '#also',
+            resize: function(event, ui){
+                if($('#resizable').width() > 300){
+                    alert('big enough!')
+                }
+            }
+
+        })
+
+        $("#also").resizable();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #circle{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: green;
+
+        }
+
+        #square {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+
+        }
+
+    </style>
+</head>
+<body>
+    <p></p>
+    <script type="text/javascript">
+        $.get('info.txt', function(data){
+          console.log(data)
+        })
+        
+        $.ajax('info1.txt').done(function(data){
+            console.log(data)
+        }).fail(function(){
+            console.log('Error')
+        })
+    </script>
+</body>
+</html>
