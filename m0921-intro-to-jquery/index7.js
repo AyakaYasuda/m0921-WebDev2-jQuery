@@ -14,6 +14,8 @@ function updateOutput() {
     `);
 }
 
+updateOutput();
+
 $(document).ready(function () {
   $("#html").click(function () {
     $(this).toggleClass("active");
